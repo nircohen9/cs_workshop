@@ -1,0 +1,24 @@
+﻿{
+  "name": "ProtectU",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "ProtectU",
+  "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage",
+    "tabs",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "protectU1.png",
+    "default_title": "I am Chapter 4",
+    "default_popup": "popup.html"
+  }
+}
