@@ -30,8 +30,8 @@ def main(
     datasets = client2.list_datasets()
     for dataset in datasets:
         print(f"Dataset ID: {dataset.dataset_id}")
-        data = client2.get_dataset(dataset.dataset_id)
-        print(data)
+        data = client2.get_dataset(dataset.dataset_id) ##get datasetfrom dataset_id
+        data.onInsert()
     
     # client = bq_connection.ConnectionServiceClient(transport=transport)
     # print(f"List of connections in project {project_id} in location {location}")

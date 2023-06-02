@@ -1,6 +1,7 @@
 ﻿// Define the URL of the WebSocket server
 const serverURL = "ws://localhost:8000";
-
+const message1 = 'EXPORT button clicked!'
+const message2 = 'EDIT SCHEMA button clicked!'
 // Create a WebSocket connection
 const socket = new WebSocket(serverURL);
 
@@ -34,42 +35,30 @@ socket.onclose = function(event) {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log('Button in the content script clicked!');
-  socket.send("edit schema is been clicked");
-
+  if (message === message1){
+    chrome.action.setPopup({ popup: "./popup_export.html"})
+    chrome.windows.create({
+      url: chrome.runtime.getURL("popup_export.html"),
+      type: "popup",
+      top: 100,
+      left: 100,
+      width: 400,
+      height: 600,
+    });
+  }
+  if (message === message2){
+    chrome.action.setPopup({ popup: "./popup_edit_schema.html"})
+    chrome.windows.create({
+      url: chrome.runtime.getURL("popup_edit_schema.html"),
+      type: "popup",
+      top: 100,
+      left: 100,
+      width: 400,
+      height: 600,
+    });
+  }
+  socket.send(message);
 });
-
-
-// // Code in your Chrome extension
-
-// // Define the URL you want to send the message to
-// const serverURL = "http://localhost:8000";
-
-// // Define the data you want to send
-// const messageData = {
-//   message: "Hello, server!"
-// };
-
-// // Create a POST request using fetch
-// fetch(serverURL, {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json"
-//   },
-//   body: JSON.stringify(messageData)
-// })
-// .then(response => {
-//   if (response.ok) {
-//     console.log("Message sent successfully!");
-//   } else {
-//     console.log("Failed to send message.");
-//   }
-// })
-// .catch(error => {
-//   console.error("An error occurred while sending the message:", error);
-// });
-
-
-
 
 
 // chrome.action.disable();

@@ -5,8 +5,12 @@ document.addEventListener('click', (event) => {
     console.log(element.textContent)
     console.log("raz")
     if (element.textContent === " Edit schema "){
-        console.log("shalala1")
-        chrome.runtime.sendMessage({ message: 'Button clicked!' });
+        console.log("EDIT SCHEMA BUTTON has been clicked")
+        chrome.runtime.sendMessage('EDIT SCHEMA button clicked!');
+    }
+    if(element.textContent ===" Export "){
+      console.log("EXPORT BUTTON has been clicked")
+      chrome.runtime.sendMessage('EXPORT button clicked!')
     }
   });
 
